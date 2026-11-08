@@ -1,0 +1,6 @@
+{
+  "name": "CataractOR - Operative Record & Intraop Complications Audit",
+  "description": "Touch-optimized OR documentation for cataract surgery, MRN patient directory, intraoperative complications tracker with pop-out options, and monthly clinical audit reports with PDF export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
