@@ -133,7 +133,7 @@ export default function App() {
         </div>
       )}
 
-      {/* Navigation Sidebar (Without Home button, with fully functioning live Search Patient) */}
+      {/* Navigation Sidebar */}
       <Sidebar
         currentTab={activeTab}
         onSelectTab={(tab) => {
@@ -143,9 +143,6 @@ export default function App() {
           setActiveTab(tab);
         }}
         records={records}
-        searchQuery={searchMRNQuery}
-        onSearchChange={setSearchMRNQuery}
-        onSelectRecord={handleSelectRecordFromSearch}
         isOpenMobile={isOpenMobile}
         onToggleMobile={() => setIsOpenMobile(!isOpenMobile)}
       />

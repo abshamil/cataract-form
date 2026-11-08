@@ -6,26 +6,22 @@ export type AnesthesiaType =
   | 'RBA' // Retrobulbar
   | 'STA' // Sub-Tenon's
   | 'GA'  // General Anesthesia
-  | 'Intracameral / Local + Sedation'
   | 'Other';
 
 export type AnesthesiaComplication =
   | 'None'
-  | 'Retrobulbar hemorrhage'
+  | 'RB hemorrhage'
   | 'Globe perforation'
-  | 'Oculocardiac reflex'
-  | 'Chemosis / Subconjunctival hemorrhage'
-  | 'Systemic toxicity / Vasovagal'
-  | 'Allergic reaction'
-  | 'Other';
+  | 'Brain stem anesthesia'
+  | 'Others (specify)';
 
 export type Peritomy = 'Superior' | 'Temporal' | 'Superotemporal' | 'None';
 
 export type ACEntry = 'Limbal' | 'Corneal' | 'Sclero-corneal';
 
-export type Capsulotomy = 'CCC' | 'Can-opener' | 'FIMS' | 'Laser / Other';
+export type Capsulotomy = 'CCC' | 'Can-opener';
 
-export type LensExtraction = 'Phaco' | 'SICS' | 'ECCE' | 'ICCE' | 'FLACS';
+export type LensExtraction = 'Phaco' | 'SICS' | 'ECCE' | 'ICCE';
 
 export type IOLPlacement =
   | 'PC'       // Posterior Chamber (in-the-bag)
@@ -43,7 +39,7 @@ export type Vitrectomy = 'None' | 'Automated' | 'Manual';
 
 export type IrrigatingSolution = 'BSS' | 'RL' | 'BSS Plus';
 
-export type ACMaintainer = 'HPMC' | 'BSS' | 'Air' | 'Healon / Cohesive' | 'DisCoVisc' | 'None';
+export type ACMaintainer = 'HPMC' | 'BSS' | 'Air' | 'DisCoVisc' | 'None';
 
 export type SutureStatus = 'None' | 'Interrupted' | 'Continuous';
 

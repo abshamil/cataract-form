@@ -163,7 +163,7 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
         setVitrectomy('Automated');
         if (iolPlacement === 'PC') setIolPlacement('Sulcus');
       }
-      if (compItem.id === 'unplanned_aphakia') {
+      if (compItem.id === 'aphakia' || compItem.id === 'unplanned_aphakia') {
         setIolPlacement('Aphakia');
         setIolType('None (Aphakic)');
         setIolPower(null);
@@ -247,7 +247,7 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-5 pb-24">
+    <div className="max-w-4xl mx-auto space-y-5 pb-10">
       {/* Top Header Card */}
       <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs flex items-center justify-between">
         <div>
@@ -266,6 +266,15 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
               Cancel
             </button>
           )}
+          <button
+            type="button"
+            onClick={() => handleSubmit(true)}
+            className="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 active:scale-95 transition-all"
+            title="Save and download Operative PDF"
+          >
+            <Printer className="w-4 h-4" />
+            Save & PDF
+          </button>
           <button
             type="button"
             onClick={() => handleSubmit(false)}
@@ -598,32 +607,6 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
         </div>
       </div>
 
-      {/* Floating Save Footer */}
-      <div className="fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-slate-200 px-6 py-3 shadow-lg flex items-center justify-between">
-        <div className="text-xs font-semibold text-slate-600">
-          MRN: <strong>{mrn || 'Unassigned'}</strong> • Eye: <strong>{operatedEye}</strong>
-        </div>
-
-        <div className="flex items-center gap-2.5">
-          <button
-            type="button"
-            onClick={() => handleSubmit(true)}
-            className="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-1.5 active:scale-95 transition-all"
-          >
-            <Printer className="w-4 h-4" />
-            Save & Download PDF
-          </button>
-          <button
-            type="button"
-            onClick={() => handleSubmit(false)}
-            className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-500/20 flex items-center gap-2 active:scale-95 transition-all"
-          >
-            <Save className="w-4 h-4" />
-            {initialData ? 'Update Record' : 'Save Operative Record'}
-          </button>
-        </div>
-      </div>
-
       {/* ============================================================ */}
       {/* POP-OUT MODAL 1: SUTURES & SUTURE TYPES (MULTI-SELECT) */}
       {/* ============================================================ */}
@@ -744,7 +727,7 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
               <div>
                 <label className="text-xs font-bold text-slate-700 block mb-1.5">Type of Anesthesia</label>
                 <div className="grid grid-cols-3 gap-2">
-                  {(['Peribulbar', 'Topical', 'STA', 'RBA', 'GA', 'Intracameral / Local + Sedation'] as AnesthesiaType[]).map((t) => (
+                  {(['Peribulbar', 'Topical', 'STA', 'RBA', 'GA', 'Other'] as AnesthesiaType[]).map((t) => (
                     <button
                       key={t}
                       type="button"
@@ -768,13 +751,11 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
                   onChange={(e) => setAnesthesiaComplication(e.target.value as AnesthesiaComplication)}
                   className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium"
                 >
-                  <option value="None">None (Uncomplicated)</option>
-                  <option value="Retrobulbar hemorrhage">Retrobulbar hemorrhage</option>
+                  <option value="None">None</option>
+                  <option value="RB hemorrhage">RB hemorrhage</option>
                   <option value="Globe perforation">Globe perforation</option>
-                  <option value="Oculocardiac reflex">Oculocardiac reflex (bradycardia)</option>
-                  <option value="Chemosis / Subconjunctival hemorrhage">Chemosis / Subconjunctival hemorrhage</option>
-                  <option value="Systemic toxicity / Vasovagal">Systemic toxicity / Vasovagal</option>
-                  <option value="Allergic reaction">Allergic reaction</option>
+                  <option value="Brain stem anesthesia">Brain stem anesthesia</option>
+                  <option value="Others (specify)">Others (specify)</option>
                 </select>
               </div>
 
@@ -900,8 +881,6 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
                   >
                     <option value="CCC">CCC</option>
                     <option value="Can-opener">Can-opener</option>
-                    <option value="FIMS">FIMS</option>
-                    <option value="Laser / Other">Laser / Other</option>
                   </select>
                 </div>
                 <div>
@@ -915,7 +894,6 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
                     <option value="Phaco">Phaco</option>
                     <option value="ECCE">ECCE</option>
                     <option value="ICCE">ICCE</option>
-                    <option value="FLACS">FLACS</option>
                   </select>
                 </div>
               </div>
@@ -1062,7 +1040,7 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
                     <option value="HPMC">HPMC</option>
                     <option value="BSS">BSS</option>
                     <option value="Air">Air</option>
-                    <option value="Healon / Cohesive">Healon / Cohesive</option>
+                    <option value="None">None</option>
                   </select>
                 </div>
               </div>
@@ -1076,10 +1054,6 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
                     'Trypan Blue',
                     'Moxifloxacin',
                     'Adrenaline / Epinephrine',
-                    'Miochol / Acetylcholine',
-                    'Lidocaine 1% PF',
-                    'Cefuroxime',
-                    'Carbachol',
                     'Triamcinolone',
                   ].map((med) => {
                     const isSelected = intracameralMeds.includes(med);
@@ -1117,7 +1091,6 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
                 >
                   <option value="gentamycin + dexa">gentamycin + dexa</option>
                   <option value="dexa only">dexa only</option>
-                  <option value="cefazolin + dexa">cefazolin + dexa</option>
                   <option value="None">None</option>
                 </select>
               </div>
@@ -1194,7 +1167,6 @@ export const SurgeryForm: React.FC<SurgeryFormProps> = ({
                     >
                       <div className="min-w-0 pr-2">
                         <div className="text-xs font-bold leading-snug">{comp.label}</div>
-                        <div className="text-[10px] opacity-75">{comp.category} • {comp.severity}</div>
                       </div>
                       <span
                         className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] shrink-0 mt-0.5 ${

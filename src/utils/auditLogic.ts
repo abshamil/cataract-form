@@ -4,17 +4,14 @@ export const STANDARD_COMPLICATIONS = [
   { id: 'pc_tear_no_vit', label: 'PC tear (no vitreous loss)', category: 'Capsular' as const, severity: 'Moderate' as const, defaultManagement: 'Sulcus IOL / Viscoat barrier' },
   { id: 'pc_tear_with_vit', label: 'PC tear with vitreous loss', category: 'Capsular' as const, severity: 'Severe' as const, defaultManagement: 'Anterior vitrectomy + Sulcus IOL' },
   { id: 'zonular_dialysis', label: 'Zonular dialysis / dehiscence', category: 'Capsular' as const, severity: 'Moderate' as const, defaultManagement: 'Capsular Tension Ring (CTR) inserted' },
-  { id: 'unplanned_aphakia', label: 'Unplanned Aphakia (no IOL)', category: 'Capsular' as const, severity: 'Severe' as const, defaultManagement: 'Deferred secondary IOL' },
+  { id: 'aphakia', label: 'Aphakia', category: 'Capsular' as const, severity: 'Severe' as const, defaultManagement: 'Deferred secondary IOL' },
   { id: 'iridodialysis', label: 'Iridodialysis / Iris trauma', category: 'Iris / Uveal' as const, severity: 'Moderate' as const, defaultManagement: 'McCannel suture / Iris repair' },
   { id: 'iris_prolapse', label: 'Iris prolapse / IFIS', category: 'Iris / Uveal' as const, severity: 'Mild' as const, defaultManagement: 'Iris retractors / Intracameral phenylephrine' },
   { id: 'dropped_nucleus', label: 'Dropped nucleus into vitreous', category: 'Posterior Segment' as const, severity: 'Severe' as const, defaultManagement: 'Referred to retina / Pars plana vitrectomy' },
   { id: 'radial_capsular_tear', label: 'Anterior capsule radial tear', category: 'Capsular' as const, severity: 'Mild' as const, defaultManagement: 'Low vacuum, converted rhexis vector' },
   { id: 'descemet_detachment', label: "Descemet's membrane detachment", category: 'Corneal' as const, severity: 'Moderate' as const, defaultManagement: 'Air bubble tamponade in AC' },
-  { id: 'corneal_burn', label: 'Corneal thermal wound burn', category: 'Corneal' as const, severity: 'Moderate' as const, defaultManagement: 'Stromal hydration + Tight nylon suture' },
-  { id: 'hyphema', label: 'Hyphema / AC hemorrhage', category: 'Iris / Uveal' as const, severity: 'Mild' as const, defaultManagement: 'OVD tamponade, BSS irrigation' },
   { id: 'suprachoroidal_hem', label: 'Suprachoroidal hemorrhage', category: 'Posterior Segment' as const, severity: 'Severe' as const, defaultManagement: 'Immediate wound closure + IV mannitol' },
-  { id: 'iol_damage_malposition', label: 'IOL damage / Decentration / Wrong power', category: 'IOL Related' as const, severity: 'Moderate' as const, defaultManagement: 'IOL explanted and exchanged' },
-  { id: 'converted_procedure', label: 'Converted to ECCE / SICS', category: 'Systemic / Other' as const, severity: 'Moderate' as const, defaultManagement: 'Incision enlarged, manual nucleus delivery' },
+  { id: 'wrong_power', label: 'Wrong power', category: 'IOL Related' as const, severity: 'Moderate' as const, defaultManagement: 'IOL explanted and exchanged' },
 ];
 
 export const BENCHMARKS = {
@@ -108,7 +105,6 @@ export function computeMonthlyAuditStats(
     SICS: { total: 0, complicated: 0 },
     ECCE: { total: 0, complicated: 0 },
     ICCE: { total: 0, complicated: 0 },
-    FLACS: { total: 0, complicated: 0 },
   };
   const surgeonMap: Record<
     string,
@@ -120,7 +116,6 @@ export function computeMonthlyAuditStats(
     RBA: { total: 0, complicated: 0 },
     STA: { total: 0, complicated: 0 },
     GA: { total: 0, complicated: 0 },
-    'Intracameral / Local + Sedation': { total: 0, complicated: 0 },
     Other: { total: 0, complicated: 0 },
   };
 
